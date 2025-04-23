@@ -36,6 +36,7 @@ const { swapElements, isTransitionSupported } = useVideoTransition({
   onComplete: () => {
     isSwapping.value = false;
     swapError.value = null;
+    console.log("Video swap completed successfully");
   },
 });
 
@@ -50,6 +51,7 @@ const handleSwapVideos = async () => {
 
   isSwapping.value = true;
   swapError.value = null;
+  console.log("Video swap started");
 
   try {
     await swapElements(
@@ -90,6 +92,7 @@ onMounted(() => {
           allowfullscreen
           :view-transition-name="video.transitionName"
           loading="lazy"
+          class="rounded-iframe"
         ></iframe>
       </div>
     </div>
@@ -134,14 +137,15 @@ onMounted(() => {
   flex: 1;
   min-width: 300px;
   border: 1px solid var(--border-color, #ddd);
-  border-radius: 0.25rem;
+  border-radius: 0.75rem;
   overflow: hidden;
   transition: transform 0.2s ease-in-out;
+  position: relative;
 }
 
 .video-wrapper:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 iframe {
@@ -149,6 +153,21 @@ iframe {
   height: 315px;
   display: block;
   border: 0;
+}
+
+.rounded-iframe {
+  border-radius: 0.75rem;
+}
+
+.overlay-image {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 80px;
+  height: auto;
+  z-index: 10;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .controls {

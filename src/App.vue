@@ -1,8 +1,10 @@
 <script setup>
 import YouTubeSwap from "./components/YouTubeSwap.vue";
+import CodeImplementation from "./components/CodeImplementation.vue";
 </script>
 
 <template>
+  <CodeImplementation />
   <YouTubeSwap />
 </template>
 
